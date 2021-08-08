@@ -19,5 +19,20 @@ with open('recipes.txt', 'r', encoding='utf-8') as file:
         file.readline()
 
 print(cook_book)
+print()
 
 
+# Задача №2 Список блюд и кол-во персон
+def get_shop_list_by_dishes(dishes, person_count):
+    order = {}
+    for dish in dishes:
+        list_ingredient = cook_book[dish]
+        for r in list_ingredient:
+            ing_name = r['ingredient_name']
+            order[ing_name] = {'measure': r['measure'], 'quantity': int(r['quantity']) * person_count}
+
+    print(order)
+
+
+get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+get_shop_list_by_dishes(['Утка по-пекински'], 3)
