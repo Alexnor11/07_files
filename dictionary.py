@@ -18,8 +18,8 @@ with open('recipes.txt', 'r', encoding='utf-8') as file:
         cook_book[name_dish] = lst
         file.readline()
 
-print(cook_book)
-print()
+# print(cook_book)
+# print()
 
 
 # Задача №2 Список блюд и кол-во персон
@@ -29,10 +29,14 @@ def get_shop_list_by_dishes(dishes, person_count):
         list_ingredient = cook_book[dish]
         for r in list_ingredient:
             ing_name = r['ingredient_name']
-            order[ing_name] = {'measure': r['measure'], 'quantity': int(r['quantity']) * person_count}
+            # Проверка количество ингредиентов и кол-во персон
+            if order.get(ing_name) is None:
+                order[ing_name] = {'measure': r['measure'], 'quantity': int(r['quantity']) * person_count}
+            else:
+                order[ing_name]['quantity'] += int(r['quantity']) * person_count
 
     print(order)
 
 
-get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
-get_shop_list_by_dishes(['Утка по-пекински'], 3)
+get_shop_list_by_dishes(['Омлет', 'Омлет'], 1)
+get_shop_list_by_dishes(['Омлет'], 2)
